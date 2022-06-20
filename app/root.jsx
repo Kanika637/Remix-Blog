@@ -1,43 +1,51 @@
-import { Outlet, LiveReload, Link } from "@remix-run/react"
+import { Outlet, LiveReload, Link, Links } from "@remix-run/react"
+import globalStylesUrl from '~/styles/global.css'
+import { render } from "react-dom";
+
+export const links=()=>[{rel:'stylesheet', href:globalStylesUrl}]
+
 export default function App(){
-  <Document>
-    <Layout><Outlet/></Layout>
+  return(<Document>
+    <Layout>
+    <Outlet/>
+    </Layout>
 
     
-  </Document>
+  </Document>)
+  
   
 }
 
-function Document({childeren, title}){
-  
+function Document({children, title}){
+
   return (
     <html lang="en">
       <head>
+        <Links/>
+        
         <title>My Remix Blog</title>
       </head>
       <body>
-        {childeren}
+        {children}
         {process.env.NODE_ENV ==='developement'?<LiveReload/> :null}
       </body>
     </html>
-  )
+  );
 }
 
-function Layout({childeren}) {
+function Layout({children}) {
   return(
     <>
-    <nav className="navbar">
-    <Link to='/' className='logo'>
-      Remix
-    </Link>
+    <nav className='navbar'>
+    <Link to='/' className="logo">Remix</Link>
     <ul className="nav">
       <li>
         <Link to='/posts'>Posts</Link>
       </li>
     </ul>
   </nav>
-  <div className="container">{childeren}</div>
-</>
-    
-  )
+  <div className="container">{children}</div>
+
+  </>  
+  );
 }
