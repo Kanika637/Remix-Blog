@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, redirect } from "@remix-run/react"
+import {Link} from "@remix-run/react"
 
 export const action =async ({request})=>{
   const form =await request.formData()
@@ -7,8 +7,9 @@ export const action =async ({request})=>{
   const body=form.get('body')
 
   const fields={title, body}
-  console.log(fields)
-    return redirect('/posts')
+ 
+  // submit to database
+    return null
 }
 function NewPost() {
   
