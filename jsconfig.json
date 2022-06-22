@@ -5,7 +5,7 @@
       "~/*": ["./app/*"]
     },
     "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "strict": true,
     "target": "ES2019",

@@ -1,13 +1,14 @@
 import React from 'react'
+import {db} from '~/utils/db.server'
 import {Link, useLoaderData} from "@remix-run/react"
 
 export const loader=()=>{
   const data={
-    posts:[
-      {id:1, title:"Post 1", body:"Nice Post"},
-      {id:2, title:"Post 2", body:"Nice Post"},
-      {id:3, title:"Post 3", body:"Nice Post"}
-    ]
+    posts: await db.post.findMany({
+      take: 20,
+      select: {id: true, title:true, createdAt: true},
+      orderBy: {createdAt:'desc'}
+    }),
   }
   return data
 }
